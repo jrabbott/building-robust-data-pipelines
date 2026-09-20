@@ -5,205 +5,486 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Building robust data pipelines — Darren Hutton & Jonathan Abbott, Yorkshire Azure User Group"
+      content="Building robust data pipelines — Darren Hutton & Jonathan Abbott, Hippo Digital"
     />
-    <title>Building robust data pipelines · YAUG</title>
+    <title>Building robust data pipelines · Hippo Digital</title>
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
         <!-- 1. Title -->
-        <section class="title-slide">
-          <h1>Building robust data pipelines</h1>
-          <p class="speakers">Darren Hutton &amp; Jonathan Abbott</p>
-          <p class="event">Yorkshire Azure User Group (YAUG)</p>
+        <section class="slide-title" data-background-color="#dde4e6">
+          <img
+            class="logo logo-tl"
+            src="assets/hippo-logo.png"
+            alt="hippodigital"
+          />
+          <img
+            class="partner-badge"
+            src="assets/partner-badge.png"
+            alt="Gold Microsoft Partner"
+          />
+          <img
+            class="title-motif"
+            src="assets/title-motif.png"
+            alt=""
+            aria-hidden="true"
+          />
+          <div class="title-stack">
+            <div class="tri-bar tri-bar-4" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+            </div>
+            <img
+              class="azure-lockup"
+              src="assets/azure-lockup.png"
+              alt="Microsoft Azure"
+            />
+            <h1>Building robust data pipelines</h1>
+            <p class="speakers">Darren Hutton &amp; Jonathan Abbott</p>
+          </div>
+        </section>
+
+        <!-- 2. Gallery -->
+        <section class="slide-gallery" data-background-color="#ffffff">
+          <div class="slide-header-bar"></div>
+          <img
+            class="logo logo-header"
+            src="assets/hippo-logo.png"
+            alt="hippodigital"
+          />
+          <div class="gallery-grid">
+            <img src="assets/gallery-1.jpg" alt="" />
+            <img src="assets/gallery-2.jpg" alt="" />
+            <img src="assets/gallery-3.jpg" alt="" />
+            <img src="assets/gallery-4.jpg" alt="" />
+            <img src="assets/gallery-5.jpg" alt="" />
+            <img src="assets/gallery-6.jpg" alt="" />
+          </div>
+        </section>
+
+        <!-- 3. Azure resources -->
+        <section class="slide-list" data-background-color="#ffffff">
+          <div class="slide-header-bar"></div>
+          <img
+            class="logo logo-header"
+            src="assets/hippo-logo.png"
+            alt="hippodigital"
+          />
+          <div class="content-pad content-pad-tight">
+            <div class="tri-bar" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <h2>Azure resources</h2>
+            <ul>
+              <li>Communication Services</li>
+              <li>SignalR Service</li>
+              <li>Stream Analytics</li>
+              <li>Data Catalogue / Schema Registry</li>
+              <li>Functions (incl Logic Apps)</li>
+              <li>Storage (Blob, Queues, Tables)</li>
+              <li>App Insights</li>
+              <li>DataFactory</li>
+              <li>Service Bus</li>
+            </ul>
+          </div>
           <aside class="notes">
-            Welcome everyone. Joint talk — frame the problem of pipelines that
-            must scale across modes, not just one Azure service tour.
+            These are great and these help us to scale… but
           </aside>
         </section>
 
-        <!-- 2. Azure resources -->
-        <section>
-          <h2>Azure building blocks</h2>
-          <p class="muted">Services that help us scale</p>
-          <ul class="service-grid">
-            <li>Communication Services</li>
-            <li>SignalR Service</li>
-            <li>Stream Analytics</li>
-            <li>Data Catalogue / Schema Registry</li>
-            <li>Functions (incl. Logic Apps)</li>
-            <li>Storage (Blob, Queues, Tables)</li>
-            <li>Application Insights</li>
-            <li>Data Factory</li>
-            <li>Service Bus</li>
-          </ul>
-          <p class="punchline fragment">These help us scale, but…</p>
+        <!-- 4. Architecture -->
+        <section class="slide-diagram" data-background-color="#ffffff">
+          <div class="slide-header-bar"></div>
+          <img
+            class="logo logo-header"
+            src="assets/hippo-logo.png"
+            alt="hippodigital"
+          />
+          <div class="diagram-frame">
+            <img
+              src="assets/architecture.png"
+              alt="End-to-end architecture from EUDs through Landing Zone and Data Lake to reporting"
+            />
+          </div>
           <aside class="notes">
-            Don’t dwell on each service. The beat is: tooling alone isn’t a
-            pipeline strategy — modes and patterns matter more.
+            These are great and these help us to scale… but
           </aside>
         </section>
 
-        <!-- 3. Data processing modes -->
-        <section>
-          <section>
-            <h2>Data processing modes</h2>
-            <p>You’ll likely need more than one — sooner than you think.</p>
-            <aside class="notes">
-              Walk through three common modes. Punchline lands on the last slide.
-            </aside>
-          </section>
-          <section class="mode-card">
-            <h3>Smaller / medium, semi-conformed</h3>
-            <ul class="compact">
-              <li>Often notebooks and experiments</li>
-              <li>Security and permissions dominate</li>
-              <li>Data is partially shaped, not fully curated</li>
-            </ul>
-          </section>
-          <section class="mode-card">
-            <h3>Large datasets, scheduled processing</h3>
-            <ul class="compact">
-              <li>Batch windows and orchestration</li>
-              <li>Interruptions and restarts matter</li>
-              <li>Watch impact on transactional systems</li>
-            </ul>
-          </section>
-          <section class="mode-card">
-            <h3>Time-series / event data</h3>
-            <ul class="compact">
-              <li>Streaming and near-real-time paths</li>
-              <li>Hard to conform reference data</li>
-              <li>Expect eventual consistency</li>
-            </ul>
-          </section>
-          <section>
-            <h2>The reality check</h2>
-            <p class="punchline">
-              You’ll likely need to support more than one mode within ~3 months.
-            </p>
-            <aside class="notes">
-              Design for mixed modes early — don’t assume a single pattern will
-              hold.
-            </aside>
-          </section>
-        </section>
-
-        <!-- 4. What's generating the data? -->
-        <section>
-          <h2>What’s generating the data?</h2>
-          <ul class="compact">
-            <li>Front-end client / WebRTC</li>
-            <li>Azure Communication Services — network traversal</li>
-            <li>SignalR — real-time push to clients and services</li>
-          </ul>
+        <!-- 5. Data processing -->
+        <section class="slide-modes" data-background-color="#ffffff">
+          <img
+            class="logo logo-bl"
+            src="assets/hippo-logo.png"
+            alt="hippodigital"
+          />
+          <div class="content-pad">
+            <h2>Data processing</h2>
+            <div class="modes">
+              <div class="mode-col adhoc">
+                <div class="mode-head">Adhoc</div>
+                <p class="label">Works with</p>
+                <ul>
+                  <li>Small/Med datasets</li>
+                  <li>Semi-conformed data</li>
+                </ul>
+                <p class="label">Considerations</p>
+                <ul>
+                  <li>Often used as experiments (notebooks)</li>
+                  <li>Security / Permissions</li>
+                </ul>
+              </div>
+              <div class="mode-col batch">
+                <div class="mode-head">Batch</div>
+                <p class="label">Works with</p>
+                <ul>
+                  <li>Large datasets</li>
+                  <li>Scheduled processing</li>
+                </ul>
+                <p class="label">Considerations</p>
+                <ul>
+                  <li>How to deal with interruptions</li>
+                  <li>Impact on transactional systems</li>
+                </ul>
+              </div>
+              <div class="mode-col streaming">
+                <div class="mode-head">Streaming</div>
+                <p class="label">Works with</p>
+                <ul>
+                  <li>Times-series data</li>
+                  <li>Event data</li>
+                </ul>
+                <p class="label">Considerations</p>
+                <ul>
+                  <li>Hard to conform reference data</li>
+                  <li>Eventual consistency model</li>
+                </ul>
+              </div>
+            </div>
+          </div>
           <aside class="notes">
-            Start at the source: interactive clients and real-time channels feed
-            the pipeline before anything lands in storage.
+            Which one of these do you need to support? Easier to ask which ones
+            you absolutely don’t need to support. I can almost guarantee that
+            you’ll need to support all of them within 3 months.
           </aside>
         </section>
 
-        <!-- 5. Landing zone -->
-        <section>
-          <h2>Landing zone</h2>
-          <ul class="compact">
-            <li>Security gateway — often a public share</li>
-            <li>API gateway</li>
-            <li>Azure data shares</li>
-            <li>Virus checking</li>
-            <li>Flagging &amp; quarantine — human review before trust</li>
-          </ul>
+        <!-- 6. Section: What’s generating the data? -->
+        <section
+          class="slide-section section-teal"
+          data-background-color="#005e5d"
+        >
+          <img
+            class="logo logo-tl"
+            src="assets/hippo-logo-white.png"
+            alt="hippodigital"
+          />
+          <img
+            class="section-motif"
+            src="assets/section-motif-teal.png"
+            alt=""
+            aria-hidden="true"
+          />
+          <div class="section-stack">
+            <div class="tri-bar" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <h2>What’s generating<br />the data?</h2>
+          </div>
+        </section>
+
+        <!-- 7. Front-end client – WebRTC -->
+        <section class="slide-webrtc" data-background-color="#ffffff">
+          <img
+            class="logo logo-tl"
+            src="assets/hippo-logo.png"
+            alt="hippodigital"
+          />
+          <div class="content-pad" style="padding-top: 2.2em">
+            <h2>Front-end client – WebRTC</h2>
+            <div class="webrtc-layout">
+              <img
+                class="webrtc-diagram"
+                src="assets/webrtc.png"
+                alt="WebRTC signaling, media stream, STUN and TURN diagram"
+              />
+              <div class="webrtc-callouts">
+                <div class="webrtc-callout">
+                  <img src="assets/signalr-badge.png" alt="" />
+                  <span>SignalR Service</span>
+                </div>
+                <div class="webrtc-callout">
+                  <img src="assets/acs-badge.png" alt="" />
+                  <span>Communication Services<br />Network Traversal</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. Landing Zone -->
+        <section class="two-tone" data-background-color="#dde4e6">
+          <div class="tone-header">
+            <h2>Landing Zone</h2>
+          </div>
+          <img
+            class="logo logo-bl"
+            src="assets/hippo-logo.png"
+            alt="hippodigital"
+          />
+          <div class="tone-body">
+            <div class="split-body">
+              <ul>
+                <li>Used as a security gateway</li>
+                <li>
+                  Usually a public share
+                  <ul>
+                    <li>Fronted by an API gateway</li>
+                    <li>Azure data shares</li>
+                  </ul>
+                </li>
+                <li>Key place for virus checking</li>
+                <li>Flagging and Quarantine (Human review)</li>
+              </ul>
+              <img
+                class="diagram-card"
+                src="assets/landing-zone.png"
+                alt="Landing Zone diagram with API Services, Blob Storage, and landing file processing"
+              />
+            </div>
+          </div>
+        </section>
+
+        <!-- 9. Section: Medallion what? -->
+        <section
+          class="slide-section section-purple"
+          data-background-color="#3c1053"
+        >
+          <img
+            class="logo logo-tl"
+            src="assets/hippo-logo-white.png"
+            alt="hippodigital"
+          />
+          <img
+            class="section-motif"
+            src="assets/section-motif-purple.png"
+            alt=""
+            aria-hidden="true"
+          />
+          <div class="section-stack">
+            <div class="tri-bar" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <h2>Medallion what?</h2>
+          </div>
+        </section>
+
+        <!-- 10. Medallion Pattern -->
+        <section class="two-tone" data-background-color="#dde4e6">
+          <div class="tone-header">
+            <h2>Medallion Pattern</h2>
+          </div>
+          <img
+            class="logo logo-bl"
+            src="assets/hippo-logo.png"
+            alt="hippodigital"
+          />
+          <div class="tone-body">
+            <div class="split-body">
+              <div>
+                <p class="intro" style="font-size: 0.85em; margin: 0 0 0.5em">
+                  Represents an increasing quality of data in the stores
+                </p>
+                <ul>
+                  <li>Simple data model</li>
+                  <li>Allows for multiple processing (replay, time-travel)</li>
+                  <li>
+                    Supports ACID transactions (atomicity, consistency,
+                    isolation, and durability)
+                  </li>
+                  <li>Supports incremental ETL</li>
+                </ul>
+              </div>
+              <img
+                class="diagram-card"
+                src="assets/medallion.png"
+                alt="Data Lake medallion layers Bronze, Silver, Gold"
+              />
+            </div>
+          </div>
           <aside class="notes">
-            Ingress is a control point: validate and quarantine before raw data
-            becomes “in the estate.”
+            Data doesn't have to be constrained to a particular processing
+            model. Each layer can be mixed mode, the most appropriate one chosen
+            for the data set/entity. Bronze — Data in its rawest form. Silver —
+            Cleansed and conformed (typically joined with some reference data).
+            Gold — Curated and finalised data; data warehouses are often
+            included in this tier.
           </aside>
         </section>
 
-        <!-- 6. Medallion pattern -->
-        <section>
-          <section>
-            <h2>Medallion pattern</h2>
-            <ul class="compact">
-              <li>Increasing data quality through layers</li>
-              <li>Simple mental model</li>
-              <li>Replay / time-travel</li>
-              <li>ACID where it counts</li>
-              <li>Incremental ETL</li>
-              <li>Layers can be mixed-mode per dataset</li>
-            </ul>
-            <aside class="notes">
-              Medallion is a quality ladder, not a rigid one-size architecture.
-              Mix modes per dataset as needed.
-            </aside>
-          </section>
-          <section>
-            <span class="layer-label bronze">Bronze</span>
-            <h2>Raw, unvalidated</h2>
-            <ul class="compact">
-              <li>Incremental append</li>
-              <li>Streaming and batch both land here</li>
-              <li>Preserve source fidelity for replay</li>
-            </ul>
-          </section>
-          <section>
-            <span class="layer-label silver">Silver</span>
-            <h2>Validated, enriched, trusted</h2>
-            <ul class="compact">
-              <li>Schema checks and cleansing</li>
-              <li>Enrichment with reference data</li>
-              <li>Ready for downstream consumers</li>
-            </ul>
-          </section>
-          <section>
-            <span class="layer-label gold">Gold</span>
-            <h2>Curated for use</h2>
-            <ul class="compact">
-              <li>Aggregated for analytics, ML, and apps</li>
-              <li>Transforms turn data into knowledge</li>
-              <li>Aggregations done before write — low-latency reads</li>
-            </ul>
-          </section>
+        <!-- 11. Bronze layer -->
+        <section class="two-tone" data-background-color="#dde4e6">
+          <div class="tone-header">
+            <h2>Bronze layer</h2>
+          </div>
+          <img
+            class="logo logo-bl"
+            src="assets/hippo-logo.png"
+            alt="hippodigital"
+          />
+          <div class="tone-body">
+            <div class="layer-copy">
+              <p class="intro">
+                The bronze layer contains unvalidated data. Data ingested in the
+                bronze layer:
+              </p>
+              <ul>
+                <li>Maintains the raw state of the data source.</li>
+                <li>Is appended incrementally and grows over time.</li>
+                <li>Combination of streaming and batch transactions.</li>
+              </ul>
+            </div>
+          </div>
         </section>
 
-        <!-- 7. Democratising data -->
-        <section>
-          <h2>Democratising data</h2>
-          <ul class="compact">
-            <li>Reporting API — controlled access for consumers</li>
-            <li>
-              HAL — Hypertext Application Language for discoverable hypermedia
-              APIs
-            </li>
-          </ul>
-          <aside class="notes">
-            Make data reachable without handing out warehouse access: APIs with
-            clear navigation (HAL) help teams self-serve safely.
-          </aside>
+        <!-- 12. Silver layer -->
+        <section class="two-tone" data-background-color="#dde4e6">
+          <div class="tone-header">
+            <h2>Silver layer</h2>
+          </div>
+          <img
+            class="logo logo-bl"
+            src="assets/hippo-logo.png"
+            alt="hippodigital"
+          />
+          <div class="tone-body">
+            <div class="layer-copy">
+              <p class="intro">
+                Bronze layer contains the entire data history. Silver layer
+                represents a version of the data that is:
+              </p>
+              <ul>
+                <li>Validated</li>
+                <li>Enriched</li>
+                <li>Trusted by downstream analytics.</li>
+              </ul>
+            </div>
+          </div>
         </section>
 
-        <!-- 8. Data as a product -->
-        <section>
-          <h2>Data as a product</h2>
-          <ul class="compact">
-            <li>Create, maintain, and validate datasets accessible by all</li>
-            <li>
-              Mindset: curate <em>data-as-products</em>, not just tooling
-            </li>
-            <li>Ownership, quality, and discoverability are first-class</li>
-          </ul>
-          <aside class="notes">
-            Closing mindset slide: pipelines succeed when datasets are treated
-            like products with owners and SLAs.
-          </aside>
+        <!-- 13. Gold layer -->
+        <section class="two-tone" data-background-color="#dde4e6">
+          <div class="tone-header">
+            <h2>Gold layer</h2>
+          </div>
+          <img
+            class="logo logo-bl"
+            src="assets/hippo-logo.png"
+            alt="hippodigital"
+          />
+          <div class="tone-body">
+            <div class="layer-copy">
+              <p>
+                Highly refined and aggregated, containing data for power
+                analytics, machine learning, and production applications.
+              </p>
+              <p>
+                Gold represents data that has been transformed into knowledge,
+                rather than just information.
+              </p>
+              <p>
+                Analysts rely on gold for their core responsibilities.
+              </p>
+              <p>
+                Aggregations, joins, and filtering are handled before data is
+                written to the gold layer — users should see low latency query
+                performance on data in gold.
+              </p>
+            </div>
+          </div>
         </section>
 
-        <!-- 9. Closing -->
-        <section class="closing title-slide">
-          <h2>Thanks</h2>
-          <p>Questions?</p>
-          <p class="speakers">Darren Hutton &amp; Jonathan Abbott</p>
-          <p class="event">Yorkshire Azure User Group (YAUG)</p>
+        <!-- 14. Section: Democratising data -->
+        <section
+          class="slide-section section-teal"
+          data-background-color="#005e5d"
+        >
+          <img
+            class="logo logo-tl"
+            src="assets/hippo-logo-white.png"
+            alt="hippodigital"
+          />
+          <img
+            class="section-motif"
+            src="assets/section-motif-teal.png"
+            alt=""
+            aria-hidden="true"
+          />
+          <div class="section-stack">
+            <div class="tri-bar" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <h2>Democratising data</h2>
+          </div>
+        </section>
+
+        <!-- 15. Reporting API -->
+        <section class="two-tone" data-background-color="#dde4e6">
+          <div class="tone-header">
+            <h2>Reporting API</h2>
+          </div>
+          <img
+            class="logo logo-bl"
+            src="assets/hippo-logo.png"
+            alt="hippodigital"
+          />
+          <div class="tone-body">
+            <ul style="font-size: 0.9em; margin: 0 0 0.35em; padding-left: 1em">
+              <li>HAL – Hypertext Application Language</li>
+            </ul>
+            <div class="dual-diagrams">
+              <img
+                src="assets/hal.png"
+                alt="HAL resource structure with resource state, links, and embedded resources"
+              />
+              <img
+                src="assets/reporting-api.png"
+                alt="Reporting API connecting Data Lake Gold to Power BI, SPSS, and R"
+              />
+            </div>
+          </div>
+        </section>
+
+        <!-- 16. Data as a product -->
+        <section class="two-tone" data-background-color="#dde4e6">
+          <div class="tone-header">
+            <h2>Data as a product</h2>
+          </div>
+          <img
+            class="logo logo-bl"
+            src="assets/hippo-logo.png"
+            alt="hippodigital"
+          />
+          <div class="tone-body">
+            <ul style="font-size: 0.95em; padding-left: 1em; max-width: 90%">
+              <li>
+                Create, maintain and validated datasets accessible by all
+              </li>
+              <li>
+                Mindset focused on curating data-as-products, rather than
+                tooling
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 17. Closing -->
+        <section class="slide-closing" data-background-color="#16243e">
+          <img
+            class="closing-bg"
+            src="assets/closing-bg.png"
+            alt="hippodigital"
+          />
         </section>
       </div>
     </div>
