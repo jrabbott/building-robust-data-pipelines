@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Building robust data pipelines — Darren Hutton & Jonathan Abbott, Yorkshire Azure User Group"
+    />
+    <title>Building robust data pipelines · YAUG</title>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- 1. Title -->
+        <section class="title-slide">
+          <h1>Building robust data pipelines</h1>
+          <p class="speakers">Darren Hutton &amp; Jonathan Abbott</p>
+          <p class="event">Yorkshire Azure User Group (YAUG)</p>
+          <aside class="notes">
+            Welcome everyone. Joint talk — frame the problem of pipelines that
+            must scale across modes, not just one Azure service tour.
+          </aside>
+        </section>
+
+        <!-- 2. Azure resources -->
+        <section>
+          <h2>Azure building blocks</h2>
+          <p class="muted">Services that help us scale</p>
+          <ul class="service-grid">
+            <li>Communication Services</li>
+            <li>SignalR Service</li>
+            <li>Stream Analytics</li>
+            <li>Data Catalogue / Schema Registry</li>
+            <li>Functions (incl. Logic Apps)</li>
+            <li>Storage (Blob, Queues, Tables)</li>
+            <li>Application Insights</li>
+            <li>Data Factory</li>
+            <li>Service Bus</li>
+          </ul>
+          <p class="punchline fragment">These help us scale, but…</p>
+          <aside class="notes">
+            Don’t dwell on each service. The beat is: tooling alone isn’t a
+            pipeline strategy — modes and patterns matter more.
+          </aside>
+        </section>
+
+        <!-- 3. Data processing modes -->
+        <section>
+          <section>
+            <h2>Data processing modes</h2>
+            <p>You’ll likely need more than one — sooner than you think.</p>
+            <aside class="notes">
+              Walk through three common modes. Punchline lands on the last slide.
+            </aside>
+          </section>
+          <section class="mode-card">
+            <h3>Smaller / medium, semi-conformed</h3>
+            <ul class="compact">
+              <li>Often notebooks and experiments</li>
+              <li>Security and permissions dominate</li>
+              <li>Data is partially shaped, not fully curated</li>
+            </ul>
+          </section>
+          <section class="mode-card">
+            <h3>Large datasets, scheduled processing</h3>
+            <ul class="compact">
+              <li>Batch windows and orchestration</li>
+              <li>Interruptions and restarts matter</li>
+              <li>Watch impact on transactional systems</li>
+            </ul>
+          </section>
+          <section class="mode-card">
+            <h3>Time-series / event data</h3>
+            <ul class="compact">
+              <li>Streaming and near-real-time paths</li>
+              <li>Hard to conform reference data</li>
+              <li>Expect eventual consistency</li>
+            </ul>
+          </section>
+          <section>
+            <h2>The reality check</h2>
+            <p class="punchline">
+              You’ll likely need to support more than one mode within ~3 months.
+            </p>
+            <aside class="notes">
+              Design for mixed modes early — don’t assume a single pattern will
+              hold.
+            </aside>
+          </section>
+        </section>
+
+        <!-- 4. What's generating the data? -->
+        <section>
+          <h2>What’s generating the data?</h2>
+          <ul class="compact">
+            <li>Front-end client / WebRTC</li>
+            <li>Azure Communication Services — network traversal</li>
+            <li>SignalR — real-time push to clients and services</li>
+          </ul>
+          <aside class="notes">
+            Start at the source: interactive clients and real-time channels feed
+            the pipeline before anything lands in storage.
+          </aside>
+        </section>
+
+        <!-- 5. Landing zone -->
+        <section>
+          <h2>Landing zone</h2>
+          <ul class="compact">
+            <li>Security gateway — often a public share</li>
+            <li>API gateway</li>
+            <li>Azure data shares</li>
+            <li>Virus checking</li>
+            <li>Flagging &amp; quarantine — human review before trust</li>
+          </ul>
+          <aside class="notes">
+            Ingress is a control point: validate and quarantine before raw data
+            becomes “in the estate.”
+          </aside>
+        </section>
+
+        <!-- 6. Medallion pattern -->
+        <section>
+          <section>
+            <h2>Medallion pattern</h2>
+            <ul class="compact">
+              <li>Increasing data quality through layers</li>
+              <li>Simple mental model</li>
+              <li>Replay / time-travel</li>
+              <li>ACID where it counts</li>
+              <li>Incremental ETL</li>
+              <li>Layers can be mixed-mode per dataset</li>
+            </ul>
+            <aside class="notes">
+              Medallion is a quality ladder, not a rigid one-size architecture.
+              Mix modes per dataset as needed.
+            </aside>
+          </section>
+          <section>
+            <span class="layer-label bronze">Bronze</span>
+            <h2>Raw, unvalidated</h2>
+            <ul class="compact">
+              <li>Incremental append</li>
+              <li>Streaming and batch both land here</li>
+              <li>Preserve source fidelity for replay</li>
+            </ul>
+          </section>
+          <section>
+            <span class="layer-label silver">Silver</span>
+            <h2>Validated, enriched, trusted</h2>
+            <ul class="compact">
+              <li>Schema checks and cleansing</li>
+              <li>Enrichment with reference data</li>
+              <li>Ready for downstream consumers</li>
+            </ul>
+          </section>
+          <section>
+            <span class="layer-label gold">Gold</span>
+            <h2>Curated for use</h2>
+            <ul class="compact">
+              <li>Aggregated for analytics, ML, and apps</li>
+              <li>Transforms turn data into knowledge</li>
+              <li>Aggregations done before write — low-latency reads</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- 7. Democratising data -->
+        <section>
+          <h2>Democratising data</h2>
+          <ul class="compact">
+            <li>Reporting API — controlled access for consumers</li>
+            <li>
+              HAL — Hypertext Application Language for discoverable hypermedia
+              APIs
+            </li>
+          </ul>
+          <aside class="notes">
+            Make data reachable without handing out warehouse access: APIs with
+            clear navigation (HAL) help teams self-serve safely.
+          </aside>
+        </section>
+
+        <!-- 8. Data as a product -->
+        <section>
+          <h2>Data as a product</h2>
+          <ul class="compact">
+            <li>Create, maintain, and validate datasets accessible by all</li>
+            <li>
+              Mindset: curate <em>data-as-products</em>, not just tooling
+            </li>
+            <li>Ownership, quality, and discoverability are first-class</li>
+          </ul>
+          <aside class="notes">
+            Closing mindset slide: pipelines succeed when datasets are treated
+            like products with owners and SLAs.
+          </aside>
+        </section>
+
+        <!-- 9. Closing -->
+        <section class="closing title-slide">
+          <h2>Thanks</h2>
+          <p>Questions?</p>
+          <p class="speakers">Darren Hutton &amp; Jonathan Abbott</p>
+          <p class="event">Yorkshire Azure User Group (YAUG)</p>
+        </section>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
