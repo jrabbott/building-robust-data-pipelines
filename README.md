@@ -1,8 +1,10 @@
 # Building robust data pipelines
 
-Reveal.js slide deck for the talk **Building robust data pipelines**, presented by **Darren Hutton** and **Jonathan Abbott** at the **Yorkshire Azure User Group (YAUG)**.
+Reveal.js slide deck for the talk **Building robust data pipelines**, presented by **Darren Hutton** and **Jonathan Abbott** (Hippo Digital).
 
 **Live deck:** [https://jrabbott.github.io/building-robust-data-pipelines/](https://jrabbott.github.io/building-robust-data-pipelines/)
+
+**Source deck:** [Google Slides — Azure Yorkshire Robust Data Pipelines](https://docs.google.com/presentation/d/1SxkHLTn-OwMTLRERSwlPYcUhgkUx7ysgz1wcZO5wyj8/edit?usp=drivesdk)
 
 ## Run locally
 
@@ -35,4 +37,4 @@ In the repo: **Settings → Pages → Build and deployment → Source: GitHub Ac
 
 ## Scaffold
 
-Small Vite + [reveal.js](https://revealjs.com/) setup intended to be copied for future talk repos. Base path is set to `/building-robust-data-pipelines/` for project Pages.
+Vite + [reveal.js](https://revealjs.com/) setup with Hippo Digital branding, diagrams, and assets aligned to the original Google Slides deck. Base path is `/building-robust-data-pipelines/` for project Pages.

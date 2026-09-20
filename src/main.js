@@ -9,6 +9,11 @@ Reveal.initialize({
   hash: true,
   slideNumber: true,
   showNotes: false,
-  transition: 'slide',
+  transition: 'fade',
+  width: 1920,
+  height: 1080,
+  margin: 0,
+  minScale: 0.2,
+  maxScale: 2.0,
   plugins: [Notes],
 });
