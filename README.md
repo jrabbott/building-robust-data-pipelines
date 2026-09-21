@@ -2,7 +2,7 @@
 
 Reveal.js slide deck for the talk **Building robust data pipelines**, presented by **Darren Hutton** and **Jonathan Abbott** (Hippo Digital).
 
-**Live deck:** [https://jrabbott.github.io/building-robust-data-pipelines/](https://jrabbott.github.io/building-robust-data-pipelines/)
+**Live deck:** [https://jrabbott.github.io/talk-building-robust-data-pipelines/](https://jrabbott.github.io/talk-building-robust-data-pipelines/)
 
 **Source deck:** [Google Slides — Azure Yorkshire Robust Data Pipelines](https://docs.google.com/presentation/d/1SxkHLTn-OwMTLRERSwlPYcUhgkUx7ysgz1wcZO5wyj8/edit?usp=drivesdk)
 
@@ -17,7 +17,7 @@ npm ci
 npm run dev
 ```
 
-Open the URL Vite prints (usually `http://localhost:5173/building-robust-data-pipelines/`).
+Open the URL Vite prints (usually `http://localhost:5173/talk-building-robust-data-pipelines/`).
 
 To check the production build:
 
@@ -54,4 +54,4 @@ In the repo: **Settings → Pages → Build and deployment → Source: GitHub Ac
 
 ## Scaffold
 
-Vite + [reveal.js](https://revealjs.com/) setup with Hippo Digital branding, diagrams, and self-hosted DM Sans. Base path is `/building-robust-data-pipelines/` for project Pages.
+Vite + [reveal.js](https://revealjs.com/) setup with Hippo Digital branding, diagrams, and self-hosted DM Sans. Base path is `/talk-building-robust-data-pipelines/` for project Pages.
