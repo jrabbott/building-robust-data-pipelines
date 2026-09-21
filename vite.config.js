@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/building-robust-data-pipelines/',
+  base: '/talk-building-robust-data-pipelines/',
 });
