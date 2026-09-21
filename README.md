@@ -45,7 +45,7 @@ Speaker notes in `<aside class="notes">` are author-controlled HTML rendered by 
 
 Shared quality gate lives in `.github/actions/build` (`npm ci`, audit, Vite build, `dist/` smoke check).
 
-- **CI** (`.github/workflows/ci.yml`) runs that action on pull requests (and non-`main` pushes).
+- **CI** (`.github/workflows/ci.yml`) runs that action on pull requests.
 - **CD** (`.github/workflows/cd.yml`) runs the same action on pushes to `main` (or `workflow_dispatch`), uploads `dist/`, and deploys to GitHub Pages.
 
 Dependabot watches npm and GitHub Actions weekly.
