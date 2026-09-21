@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap");
-
 :root {
   --hippo-navy: #0c2340;
   --hippo-grey: #dde4e6;
@@ -80,6 +78,23 @@
   color: var(--hippo-navy);
   background: transparent;
   font-family: var(--r-main-font);
+}
+
+.reveal a:focus-visible,
+.reveal .controls button:focus-visible,
+.reveal .slide-number:focus-visible {
+  outline: 3px solid var(--hippo-teal);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal .slides section,
+  .reveal .backgrounds .slide-background,
+  .reveal .progress span,
+  .reveal .controls {
+    transition: none !important;
+    animation: none !important;
+  }
 }
 
 /* —— Shared chrome —— */
