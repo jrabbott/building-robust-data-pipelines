@@ -9,8 +9,8 @@
   --bar-pink: #ffa3b5;
   --bar-mint: #a0dab3;
   --bar-steel: #7eb8c9;
-  /* Logo + bars sit under ~2.1em; keep titles clear of the chrome */
-  --brand-chrome-clearance: 3.55em;
+  /* Logo + bars sit under ~2.1em; keep titles well clear of the chrome */
+  --brand-chrome-clearance: 4.75em;
   --r-background-color: var(--hippo-white);
   --r-main-font: "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --r-heading-font: "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -170,6 +170,11 @@
   padding: var(--brand-chrome-clearance) 1.2em 1.4em;
   height: 100%;
   box-sizing: border-box;
+}
+
+.content-pad > h2,
+.section-stack > h2 {
+  margin-top: 0;
 }
 
 /* —— Title —— */
