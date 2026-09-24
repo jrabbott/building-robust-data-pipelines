@@ -100,30 +100,34 @@
 
 /* —— Shared chrome: logo + 4 colour bars —— */
 
+/* Logo aspect ~2048×443 → width ≈ height × 4.62 */
 .brand-lockup {
+  --logo-height: 1.05em;
+  --logo-width: calc(var(--logo-height) * 4.62);
   position: absolute;
   top: 0.55em;
   left: 0.7em;
   z-index: 3;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  width: max-content;
-  max-width: 38%;
+  width: var(--logo-width);
 }
 
 .brand-lockup .logo {
   display: block;
-  height: 1.05em;
-  width: auto;
+  height: var(--logo-height);
+  width: var(--logo-width);
+  object-fit: contain;
+  object-position: left center;
 }
 
 .brand-lockup .colour-bars {
   display: flex;
   gap: 0.12em;
-  width: 100%;
+  width: var(--logo-width);
   height: 0.2em;
   margin-top: 0.28em;
+  flex-shrink: 0;
 }
 
 .brand-lockup .colour-bars span {
